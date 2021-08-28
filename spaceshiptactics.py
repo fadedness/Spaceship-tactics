@@ -24,8 +24,8 @@ Config.set("graphics", "resizable", 0)
 
 import kivy 
 kivy.require("2.0.0")
-import functools
-from time import sleep
+import os, sys
+from kivy.resources import resource_add_path, resource_find
 from language_rus import text_strings
 current_language = ["Russian"]
 import random
@@ -2332,6 +2332,8 @@ class SpaceshipTacticsApp(App):
         pass
 
 if __name__ == "__main__":
+    if hasattr(sys, "_MEIPASS"):
+        resource_add_path(os.path.join(sys._MEIPASS))
     app = SpaceshipTacticsApp()
     print("starting the application")
     app.run()
