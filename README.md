@@ -51,8 +51,11 @@ pip3 install kivy
 
 ## To do
 Add network code to enable player vs player games
+
 Add basic AI for singleplayer
+
 Add more sounds, background music, missing animations
+
 Maybe add different battle mechanics and/or otherwise finetune game balance
 
 ## Установка
@@ -80,4 +83,5 @@ pip3 install kivy
 
 ## В планах
 Добавить игру по сети
+
 Править баланс
