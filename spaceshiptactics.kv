@@ -1,0 +1,429 @@
+GameScreen:
+
+<GameScreen>:
+	background_image: background_image
+	label_preview_attack: label_preview_attack
+	label_selected_ship_stats_1: label_selected_ship_stats_1
+	label_selected_ship_stats_2: label_selected_ship_stats_2
+	label_selected_ship_stats_3: label_selected_ship_stats_3
+	label_temp_result: label_temp_result
+	btn_give_up: btn_give_up
+	animation_animation_speed_label: animation_animation_speed_label
+	#animation_animation_speed: animation_animation_speed
+	#animation_movement_speed: animation_movement_speed
+	#animation_image: animation_image
+	FloatLayout:
+		#size_hint: None, None
+		#width: "1024dp"
+		#height: "568dp"
+		Image:
+			id: background_image
+			size_hint: None, None
+			size: "1024dp", "568dp"
+			pos: "0dp", "200dp"
+		BoxLayout:
+			size_hint: None, None
+			height: "200dp"
+			width: "1024dp"
+			pos: "0dp", "0dp"
+			BoxLayout:
+				orientation: "vertical"
+				size_hint: None, 1
+				width: "80dp"
+				#Slider:
+				#	id: animation_movement_speed
+				#	min: 10
+				#	max: 20
+				Label:
+					id: animation_animation_speed_label
+				Slider:
+				#	id: animation_animation_speed
+					min: 3
+					max: 10
+					value: 10
+					on_value: root.change_animation_speed(self.value)
+				Button:
+					id: btn_give_up
+					on_press: root.change_screen_to_menu()
+			Label:
+				id: label_temp_result
+				markup: True
+			BoxLayout:
+				orientation: "horizontal"
+				size_hint: None, None
+				size: "724dp", "200dp"
+				Label:
+					id: label_selected_ship_stats_1
+					markup: True
+				Label:
+					id: label_selected_ship_stats_2
+					markup: True
+				Label:
+					id: label_selected_ship_stats_3
+					markup: True
+				Label
+					id: label_preview_attack
+					text: root.label_preview_attack_text
+					markup: True
+		#Image:
+			#id: animation_image
+			#opacity: 0
+<MenuScreen>:
+	btn_singleplayer_game: btn_singleplayer_game
+	btn_hot_seat_game: btn_hot_seat_game
+	btn_network_game: btn_network_game
+	btn_exit_game: btn_exit_game
+	FloatLayout:
+		Image:
+			source: root.backgroud_image
+		AnchorLayout:
+			size_hint: None, None
+			size: "1024dp", "600dp"
+			pos: self.parent.x, self.parent.y + 80
+			BoxLayout:
+				orientation: "vertical"
+				size_hint: None, None
+				size: "200dp", "250dp"
+				Button:
+					id: btn_singleplayer_game
+					size_hint: None, None
+					size: "200dp", "50dp"
+					text: root.loc_singleplayer_game	#"Singleplayer Game"
+					disabled: True
+					on_press: root.start_singleplayer_game()		# root.change_screen_to_arrangemenu()
+				Button:
+					id: btn_hot_seat_game
+					size_hint: None, None
+					size: "200dp", "50dp"
+					text: root.loc_hot_seat_game	#"Hot seat Game"
+					on_press: root.start_hot_seat_game()		# root.change_screen_to_arrangemenu()
+				Button:
+					id: btn_network_game
+					size_hint: None, None
+					size: "200dp", "50dp"
+					text: root.loc_network_game	#"Network Game"
+					disabled: True
+					on_press: root.start_network_game()		# root.change_screen_to_arrangemenu()
+				BoxLayout:
+					orientation: "horizontal"
+					#Widget:
+					Button:
+						size_hint: None, None
+						size: "100dp", "50dp"
+						on_press: root.change_language_to_english()
+						Image:
+							source: root.english_flag
+							x: self.parent.x
+							y: self.parent.y
+							size: self.parent.width, self.parent.height
+					Button:
+						size_hint: None, None
+						size: "100dp", "50dp"
+						on_press: root.change_language_to_russian()
+						Image:
+							source: root.russian_flag
+							x: self.parent.x
+							y: self.parent.y
+							size: self.parent.width, self.parent.height
+					#Widget:
+				Button
+					id: btn_exit_game
+					size_hint: None, None
+					size: "200dp", "50dp"
+					text: root.loc_exit_game	#"Exit"
+					on_press: root.exit_app()
+
+<ArrangeMenuScreen>:
+	points_left: points_left
+	selected_ship: selected_ship
+	selected_ship_stats_1: selected_ship_stats_1
+	selected_ship_stats_2: selected_ship_stats_2
+	selected_ship_stats_3: selected_ship_stats_3
+	selected_ship_number: selected_ship_number
+	selected_ship_number_label: selected_ship_number_label
+	arrange_squad_1: arrange_squad_1
+	arrange_squad_2: arrange_squad_2
+	arrange_squad_3: arrange_squad_3
+	arrange_squad_4: arrange_squad_4
+	arrange_squad_5: arrange_squad_5
+	arrange_squad_6: arrange_squad_6
+	arrange_squad_7: arrange_squad_7
+	arrange_squad_label_1: arrange_squad_label_1
+	arrange_squad_label_2: arrange_squad_label_2
+	arrange_squad_label_3: arrange_squad_label_3
+	arrange_squad_label_4: arrange_squad_label_4
+	arrange_squad_label_5: arrange_squad_label_5
+	arrange_squad_label_6: arrange_squad_label_6
+	arrange_squad_label_7: arrange_squad_label_7
+	lbl_points_left: lbl_points_left
+	btn_finish_preparing: btn_finish_preparing
+	btn_add_ships: btn_add_ships
+	btn_remove_ships_1: btn_remove_ships_1
+	btn_remove_ships_2: btn_remove_ships_2
+	btn_remove_ships_3: btn_remove_ships_3
+	btn_remove_ships_4: btn_remove_ships_4
+	btn_remove_ships_5: btn_remove_ships_5
+	btn_remove_ships_6: btn_remove_ships_6
+	btn_remove_ships_7: btn_remove_ships_7
+	GridLayout:
+		cols: 2
+		BoxLayout:
+			orientation: "vertical"
+			Label:
+				id: lbl_points_left
+				text: root.loc_points_left_lbl	#"Points left"
+			Label:
+				id: points_left
+				text: "10 000 000"
+		Button:
+			id: btn_finish_preparing
+			text: root.loc_finish_preparing	#"Finish"
+			on_press: root.validate_finish()
+		BoxLayout:
+			orientation: "horizontal"
+			Widget:
+				#size_hint: None, 1
+				#width: "40dp"
+			Button:
+				text: "<"
+				font_size: dp(40)
+				size_hint: None, 1
+				width: "40dp"
+				#height: "100dp"
+				on_press: root.arrange_previous_ship()
+			Image:
+				id: selected_ship
+				#source: "images/ship2.png"
+			Button:
+				text: ">"
+				font_size: dp(40)
+				size_hint: None, 1
+				width: "40dp"
+				#height: "100dp"
+				on_press: root.arrange_next_ship()
+			Widget:
+				#size_hint: None, 1
+				#width: "40dp"
+		BoxLayout:
+			orientation: "horizontal"
+			size_hint: 1, None
+			height: "100dp"
+			Label:
+				id: selected_ship_stats_1
+				markup: True
+			Label:
+				id: selected_ship_stats_2
+				markup: True
+			Label:
+				id: selected_ship_stats_3
+				markup: True
+		Slider:
+			id: selected_ship_number
+			min: 1
+			max: root.arrange_max_number
+			on_value: root.arrange_change_selected_number_label()
+		BoxLayout:
+			Label:
+				id: selected_ship_number_label
+				text: "1"
+			Button:
+				id: btn_add_ships
+				text: root.loc_add_ships	#"Add ships"
+				on_press: root.arrange_add_ship()
+		StackLayout:
+			cols: 2
+			Label:
+				id: arrange_squad_label_1
+				size_hint: None, 1
+				width: "60dp"
+			Image:
+				id: arrange_squad_1
+				source: root.empty_image
+				size_hint: None, None
+				width: "80dp"
+				height: "80dp"
+		AnchorLayout:
+			anchor_x: "right"
+			anchor_y: "center"
+			Button:
+				id: btn_remove_ships_1
+				text: root.loc_remove_ships #"Remove ships"
+				opacity: 0
+				disabled: True
+				size_hint: None, 1
+				width: "120dp"
+				on_press: root.arrange_remove_ship(0)
+		StackLayout:
+			cols: 2
+			Label:
+				id: arrange_squad_label_2
+				size_hint: None, 1
+				width: "60dp"
+			Image:
+				id: arrange_squad_2
+				source: root.empty_image
+				size_hint: None, None
+				width: "80dp"
+				height: "80dp"
+		#BoxLayout:
+		#	Label:
+		#		id: arrange_squad_label_2
+		#	Image:
+		#		id: arrange_squad_2
+		#		source: root.empty_image
+		AnchorLayout:
+			anchor_x: "right"
+			anchor_y: "center"
+			Button:
+				id: btn_remove_ships_2
+				text: root.loc_remove_ships #"Remove ships"
+				opacity: 0
+				disabled: True
+				size_hint: None, 1
+				width: "120dp"
+				on_press: root.arrange_remove_ship(1)
+		StackLayout:
+			cols: 2
+			Label:
+				id: arrange_squad_label_3
+				size_hint: None, 1
+				width: "60dp"
+			Image:
+				id: arrange_squad_3
+				source: root.empty_image
+				size_hint: None, None
+				width: "80dp"
+				height: "80dp"
+		#BoxLayout:
+		#	Label:
+		#		id: arrange_squad_label_3
+		#	Image:
+		#		id: arrange_squad_3
+		#		source: root.empty_image
+		AnchorLayout:
+			anchor_x: "right"
+			anchor_y: "center"
+			Button:
+				id: btn_remove_ships_3
+				text: root.loc_remove_ships #"Remove ships"
+				opacity: 0
+				disabled: True
+				size_hint: None, 1
+				width: "120dp"
+				on_press: root.arrange_remove_ship(2)
+		StackLayout:
+			cols: 2
+			Label:
+				id: arrange_squad_label_4
+				size_hint: None, 1
+				width: "60dp"
+			Image:
+				id: arrange_squad_4
+				source: root.empty_image
+				size_hint: None, None
+				width: "80dp"
+				height: "80dp"
+		#BoxLayout:
+		#	Label:
+		#		id: arrange_squad_label_4
+		#	Image:
+		#		id: arrange_squad_4
+		#		source: root.empty_image
+		AnchorLayout:
+			anchor_x: "right"
+			anchor_y: "center"
+			Button:
+				id: btn_remove_ships_4
+				text: root.loc_remove_ships #"Remove ships"
+				opacity: 0
+				disabled: True
+				size_hint: None, 1
+				width: "120dp"
+				on_press: root.arrange_remove_ship(3)
+		StackLayout:
+			cols: 2
+			Label:
+				id: arrange_squad_label_5
+				size_hint: None, 1
+				width: "60dp"
+			Image:
+				id: arrange_squad_5
+				source: root.empty_image
+				size_hint: None, None
+				width: "80dp"
+				height: "80dp"
+		#BoxLayout:
+		#	Label:
+		#		id: arrange_squad_label_5
+		#	Image:
+		#		id: arrange_squad_5
+		#		source: root.empty_image
+		AnchorLayout:
+			anchor_x: "right"
+			anchor_y: "center"
+			Button:
+				id: btn_remove_ships_5
+				text: root.loc_remove_ships #"Remove ships"
+				opacity: 0
+				disabled: True
+				size_hint: None, 1
+				width: "120dp"
+				on_press: root.arrange_remove_ship(4)
+		StackLayout:
+			cols: 2
+			Label:
+				id: arrange_squad_label_6
+				size_hint: None, 1
+				width: "60dp"
+			Image:
+				id: arrange_squad_6
+				source: root.empty_image
+				size_hint: None, None
+				width: "80dp"
+				height: "80dp"
+		#BoxLayout:
+		#	Label:
+		#		id: arrange_squad_label_6
+		#	Image:
+		#		id: arrange_squad_6
+		#		source: root.empty_image
+		AnchorLayout:
+			anchor_x: "right"
+			anchor_y: "center"
+			Button:
+				id: btn_remove_ships_6
+				text: root.loc_remove_ships #"Remove ships"
+				opacity: 0
+				disabled: True
+				size_hint: None, 1
+				width: "120dp"
+				on_press: root.arrange_remove_ship(5)
+		StackLayout:
+			cols: 2
+			Label:
+				id: arrange_squad_label_7
+				size_hint: None, 1
+				width: "60dp"
+			Image:
+				id: arrange_squad_7
+				source: root.empty_image
+				size_hint: None, None
+				width: "80dp"
+				height: "80dp"
+		#BoxLayout:
+		#	Label:
+		#		id: arrange_squad_label_7
+		#	Image:
+		#		id: arrange_squad_7
+		#		source: root.empty_image
+		AnchorLayout:
+			anchor_x: "right"
+			anchor_y: "center"
+			Button:
+				id: btn_remove_ships_7
+				text: root.loc_remove_ships #"Remove ships"
+				opacity: 0
+				disabled: True
+				size_hint: None, 1
+				width: "120dp"
+				on_press: root.arrange_remove_ship(6)
